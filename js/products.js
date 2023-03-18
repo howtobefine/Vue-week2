@@ -26,6 +26,7 @@ const app = {
         }
     },
     mounted() {
+        // 載入網站前取出 Cookie 並放在 headers 中再執行檢查是否登入的函式
         const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexschool\s*=\s*([^;]*).*$)|^.*$/, '$1');
         axios.defaults.headers.common.Authorization = token;
         this.checkLogin();

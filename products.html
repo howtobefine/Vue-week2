@@ -37,6 +37,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- v-for 一定要綁定 key，是要物件下的唯一值 -->
                             <tr v-for="(product) in products" :key="product.id">
                                 <td width="150">{{ product.title }}</td>
                                 <td width="120">
@@ -50,6 +51,7 @@
                                     <span v-else>未啟用</span>
                                 </td>
                                 <td width="120">
+                                    <!-- 點擊後把某項產品的資料暫存到 tempProducts 的物件裡 -->
                                     <button @click="tempProducts = product" type="button"
                                         class="btn btn-primary">查看細節</button>
                                 </td>
@@ -75,6 +77,7 @@
                                     <p class="card-text text-secondary"><del>{{tempProducts.origin_price }}</del></p>
                                     元 / {{ tempProducts.unit }}
                                 </div>
+                                <button @click="tempProducts = {}" type="button" class="btn btn-danger">取消選取</button>
                             </div>
                         </div>
                         <template v-if="tempProducts?.imagesUrl?.length">
@@ -82,6 +85,7 @@
                                 :key="pic">
                         </template>
                     </template>
+                    <!-- 沒有卡片的時候才顯示 -->
                     <p v-if="!tempProducts.title" class="text-secondary">請選擇一個商品查看</p>
                 </div>
             </div>

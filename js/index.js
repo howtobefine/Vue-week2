@@ -8,12 +8,15 @@ const app = {
         }
     },
     methods: {
+        // 登入
         login() {
             axios.post(`${url}admin/signin`, this.user)
                 .then(res => {
-                    console.log(res.data);
+                    // 解構
                     const { token, expired } = res.data;
+                    // 存入 Cookie
                     document.cookie = `hexschool=${token}; expires=${new Date(expired)}`;
+                    // alert 先跳之後再跳轉頁面
                     alert('登入成功');
                     setTimeout(() => {
                         window.location = './products.html';
