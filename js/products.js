@@ -12,11 +12,11 @@ const app = {
                     this.getProducts();
                 })
                 .catch(err => {
-                    console.log(err);
+                    alert('驗證未通過，挑轉回登入頁面');
                 })
         },
         getProducts() {
-            axios.get(`${url}api/${path}/admin/products/all`)
+            axios.get(`${url}api/${path}/admin/products`)
                 .then(res => {
                     this.products = res.data.products;
                 })

@@ -38,7 +38,7 @@
                         </thead>
                         <tbody>
                             <!-- v-for 一定要綁定 key，是要物件下的唯一值 -->
-                            <tr v-for="(product) in products" :key="product.id">
+                            <tr v-for="product in products" :key="product.id">
                                 <td width="150">{{ product.title }}</td>
                                 <td width="120">
                                     {{ product.origin_price }}
@@ -47,8 +47,9 @@
                                     {{ product.price }}
                                 </td>
                                 <td width="150">
-                                    <span class="text-success" v-if="product.is_enabled">啟用</span>
-                                    <span v-else>未啟用</span>
+                                    <span :class="{'text-success': product.is_enabled}">{{ product.is_enabled ? '啟用' :
+                                        '未啟用'}}</span>
+
                                 </td>
                                 <td width="120">
                                     <!-- 點擊後把某項產品的資料暫存到 tempProducts 的物件裡 -->
@@ -86,7 +87,7 @@
                         </template>
                     </template>
                     <!-- 沒有卡片的時候才顯示 -->
-                    <p v-if="!tempProducts.title" class="text-secondary">請選擇一個商品查看</p>
+                    <p v-else="tempProducts.title" class="text-secondary">請選擇一個商品查看</p>
                 </div>
             </div>
         </div>
